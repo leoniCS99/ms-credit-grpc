@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.credit.v1";
+
+package br.com.credit.v1;
+
+service CreditService {
+  rpc create(creditReq) returns (creditRes){}
+}
+
+message creditReq {
+  string cpf = 1;
+  double creditAmount = 2;
+  int32 terminMonths = 3;
+  ApprovalStatus approvalStatus = 4;
+}
+
+message creditRes {
+  int64 id = 1;
+  string cpf = 2;
+  double creditAmount = 3;
+  int32 terminMonths = 4;
+  ApprovalStatus approvalStatus = 5;
+}
+
+enum ApprovalStatus {
+  PENDING = 0;
+  APPROVED = 1;
+  REJECTED = 2;
+}
